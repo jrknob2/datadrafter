@@ -1,0 +1,10 @@
+.number-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+input[type='number'] {
+  padding: 4px;
+  font-size: 1rem;
+}

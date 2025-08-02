@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "bundler",
     "emitDecoratorMetadata": false,
     "target": "es2022",
-    "module": "preserve",
+    "module": "ESNext",
     "lib": ["es2020", "dom"],
-    "paths": {},
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@datadrafter/designer": ["apps/designer/index.ts"],
+      "@datadrafter/modeler": ["apps/modeler/index.ts"],
+      "@datadrafter/analyzer": ["apps/analyzer/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

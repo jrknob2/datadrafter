@@ -1,0 +1,14 @@
+.radio-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+.group-label {
+  font-weight: bold;
+}
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

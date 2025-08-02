@@ -1,0 +1,66 @@
+<label class="select-field">
+  <span>{{ label }}</span>
+  <select
+    [ngModel]="value"
+    (ngModelChange)="onChange($event.target.value)"
+    (blur)="onTouched()"
+  >
+    <option disabled selected [value]="''">{{ placeholder }}</option>
+    <option *ngFor="let opt of options" [value]="opt.value">{{ opt.label }}</option>
+  </select>
+</label>
+
+<!-- Angular compiler visibility shim for dynamic field components -->
+<!-- <dd-text-field
+  *ngIf="false"
+  [label]="''"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-textarea-field
+  *ngIf="false"
+  textarea
+  [label]="''"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-select-field
+  *ngIf="false"
+  type="number"
+  [label]="''"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-checkbox-field
+  *ngIf="false"
+  [label]="''"
+  [options]="[]"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-radio-field
+  *ngIf="false"
+  [label]="''"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-number-field
+  *ngIf="false"
+  [label]="''"
+  [options]="[]"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+
+<dd-date
+  *ngIf="false"
+  [label]="''"
+  [(ngModel)]="noop"
+  name="noop"
+/>
+ -->

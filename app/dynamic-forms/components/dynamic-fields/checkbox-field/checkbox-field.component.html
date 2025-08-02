@@ -1,0 +1,8 @@
+<label class="checkbox-field">
+  <input 
+    type="checkbox" 
+    [checked]="value" 
+    (change)="handleChange($any($event.target).checked)"
+    (blur)="onTouched()" />
+  <span>{{ label }}</span>
+</label>

@@ -1,0 +1,48 @@
+.selection-overlay {
+  position: absolute;
+  pointer-events: none; // overlay itself doesn't block events except for handles
+  z-index: 2000;
+  border-color: red;
+}
+:host {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;  // overlay doesn't block mouse events
+  z-index: 1000;
+  display: block;
+  border-color: red;
+  border-radius: 6px;
+}
+.bounding-box {
+  position: absolute;
+  border: 1px dashed #0088ff;
+  background: none;
+  pointer-events: none;
+}
+.handle {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 1px solid #0088ff;
+  cursor: pointer;
+  pointer-events: all;
+}
+.handle-corner {
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ff6600;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+}
+.handle-edge {
+  border-radius: 2px;
+  background: #fff;
+  border: 2px solid #ff6600;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+}

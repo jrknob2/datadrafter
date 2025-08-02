@@ -1,0 +1,52 @@
+<div class="toolbar">
+  <!-- New Drawing -->
+  <button class="icon-btn" title="Open Drawing" (click)="openDrawing()">
+    <i class="fa-regular fa-folder-open"></i>
+  </button>
+  <!-- New Drawing -->
+  <button class="icon-btn" title="New Drawing" (click)="newDrawing()">
+    <i class="fa-regular fa-file"></i>
+  </button>
+  <!-- Delete Drawing -->
+  <button class="icon-btn" title="Delete Drawing" (click)="deleteDrawing()">
+    <i class="fa-solid fa-trash"></i>
+  </button>
+  <!-- Select Tool -->
+  <button class="icon-btn" [class.active]="currentCommand === 'select'" title="Select" (click)="setCommand('select')">
+    <i class="fa-solid fa-arrow-pointer"></i>
+  </button>
+
+  <!-- Drawing Command Dropdown -->
+  <div class="dropdown">
+    <button class="icon-drpd-btn dropdown-toggle" title="Drawing Tools" (click)="toggleDropdown()"
+    [class.active]="isDrawingCommand(currentCommand)">
+        <!-- Show icon for current command, or a general draw icon -->
+        <ng-container [ngSwitch]="currentCommand">
+          <span *ngSwitchCase="'rect'" class="fa-regular fa-square"></span>
+          <span *ngSwitchCase="'circle'" class="fa-regular fa-circle"></span>
+          <svg *ngSwitchCase="'ellipse'"width="22" height="22" viewBox="0 0 22 22">
+            <ellipse cx="8" cy="11" rx="6" ry="9" fill="none" stroke="#fff" stroke-width="1.5" />
+          </svg>
+          <span *ngSwitchCase="'polygon'" class="fa-solid fa-draw-polygon"></span>
+          <span *ngSwitchDefault class="fa-solid fa-pencil"></span>
+        </ng-container>
+      <span class="dropdown-arrow">&#9662;</span>
+    </button>
+    <div class="dropdown-menu" *ngIf="dropdownOpen">
+      <button class="icon-btn" title="Draw Rectangle" (click)="setCommand('rect')" [class.active]="currentCommand === 'rect'">
+        <i class="fa-regular fa-square"></i> Rectangle
+      </button>
+      <button class="icon-btn" title="Draw Circle" (click)="setCommand('circle')" [class.active]="currentCommand === 'circle'">
+        <i class="fa-regular fa-circle"></i> Circle
+      </button>
+      <button class="icon-btn" title="Draw Ellipse" (click)="setCommand('ellipse')" [class.active]="currentCommand === 'ellipse'">
+        <svg width="22" height="22" viewBox="0 0 22 22">
+          <ellipse cx="8" cy="11" rx="6" ry="9" fill="none" stroke="#fff" stroke-width="1.5" />
+        </svg> Ellipse
+      </button>
+      <button class="icon-btn" title="Draw Polygon" (click)="setCommand('polygon')" [class.active]="currentCommand === 'polygon'">
+        <i class="fa-solid fa-draw-polygon"></i> Polygon
+      </button>
+    </div>
+  </div>
+</div>

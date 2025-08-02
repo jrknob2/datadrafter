@@ -1,0 +1,15 @@
+.textarea-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+textarea {
+  font-size: 1rem;
+  padding: 4px;
+  resize: vertical;
+}
+textarea {
+  font: inherit;
+  font-size: inherit;
+}

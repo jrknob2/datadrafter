@@ -1,0 +1,9 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<label class="field-label">{{ label }}</label>
+<input
+  type="text"
+  class="form-control"
+  [value]="value"
+  (input)="onInput($event)"
+  (blur)="onTouched()"
+/>

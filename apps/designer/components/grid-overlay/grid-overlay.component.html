@@ -1,0 +1,8 @@
+<svg class="grid-overlay" xmlns="http://www.w3.org/2000/svg" [attr.width]="canvasWidth" [attr.height]="canvasHeight">
+  <ng-container *ngFor="let x of gridLines.x">
+    <line [attr.x1]="x" y1="0" [attr.x2]="x" [attr.y2]="canvasHeight" class="grid-line" />
+  </ng-container>
+  <ng-container *ngFor="let y of gridLines.y">
+    <line x1="0" [attr.y1]="y" [attr.x2]="canvasWidth" [attr.y2]="y" class="grid-line" />
+  </ng-container>
+</svg>

@@ -1,0 +1,49 @@
+.drawing-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  //background: #f2f2f2;
+  //z-index: 0;
+  border: 2px solid blue;
+  border-radius: 6px;
+  border-width: 5;
+  background-color: transparent;
+  //position: absolute;
+  inset: 0; // shorthand for top/left/right/bottom: 0
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border: 2px solid transparent;
+  outline: none;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: lightblue;
+  top: 70px;
+  left: 50px;
+}
+
+.rectangle {
+  width: 60px;
+  height: 60px;
+  background-color: lightgreen;
+  top: 70px;
+  left: 160px;
+}
+
+.shape.selected {
+  border-color: black;
+  border-style: dashed;
+}
+.drawing-area {
+  position: relative;
+
+  canvas {
+    display: block;
+  }
+}

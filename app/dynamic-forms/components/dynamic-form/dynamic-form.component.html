@@ -1,0 +1,109 @@
+<div *ngIf="renderModel">
+  <!-- Record Header Fields (no label) -->
+  <ng-container *ngFor="let field of renderModel.recordHeaderAttributes">
+    <ng-container
+      *ngTemplateOutlet="
+        fieldTemplates;
+        context: { $implicit: field, value: renderModel[field.name] }
+      "
+    ></ng-container>
+  </ng-container>
+
+  <!-- Static Attributes -->
+  <h3 class="section-label">Static Attributes</h3>
+  <ng-container *ngFor="let field of renderModel.staticAttributes">
+    <ng-container
+      *ngTemplateOutlet="
+        fieldTemplates;
+        context: { $implicit: field, value: renderModel[field.name] }
+      "
+    ></ng-container>
+  </ng-container>
+
+  <!-- Dynamic Attributes -->
+  <h3 class="section-label">Dynamic Attributes</h3>
+  <ng-container *ngFor="let field of renderModel.dynamicAttributes">
+    <ng-container
+      *ngTemplateOutlet="
+        fieldTemplates;
+        context: { $implicit: field, value: renderModel[field.name] }
+      "
+    ></ng-container>
+  </ng-container>
+
+  <!-- Field Renderer Template -->
+  <ng-template #fieldTemplates let-field let-value="value">
+    <ng-container [ngSwitch]="field.type">
+      <dd-text-field
+        *ngSwitchCase="'text'"
+        [label]="field.label"
+        [readonly]="isReadonly || field.readonly"
+        [(ngModel)]="field.value"
+        [name]="field.name"
+      />
+      <dd-textarea-field
+        *ngSwitchCase="'textarea'"
+        [label]="field.label"
+        [readonly]="isReadonly || field.readonly"
+        [(ngModel)]="renderModel[field.name]"
+        [name]="field.name"
+      />
+      <dd-select-field
+        *ngSwitchCase="'select'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [options]="field.enum"
+        [(ngModel)]="renderModel[field.name]"
+        [name]="field.name"
+      />
+      <dd-checkbox-field
+        *ngSwitchCase="'checkbox'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        (valueChange)="renderModel[field.name] = $event"
+        [name]="field.name"
+      />
+      <dd-radio-field
+        *ngSwitchCase="'radio'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [(ngModel)]="renderModel[field.name]"
+        [name]="field.name"
+      />
+      <dd-date-field
+        *ngSwitchCase="'date'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [(ngModel)]="renderModel[field.name]"
+        [name]="field.name"
+      />
+      <dd-number-field
+        *ngSwitchCase="'number'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [step]="field.step || 1"
+        [prefix]="''"
+        [(ngModel)]="field.value"
+        [name]="field.name"
+      />
+      <dd-number-field
+        *ngSwitchCase="'money'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [step]="field.step || 0.01"
+        [prefix]="field.prefix || '$'"
+        [(ngModel)]="field.value"
+        [name]="field.name"
+      />
+      <dd-number-field
+        *ngSwitchCase="'float'"
+        [label]="field.name"
+        [readonly]="isReadonly || field.readonly"
+        [step]="field.step || 0.1"
+        [prefix]="''"
+        [(ngModel)]="field.value"
+        [name]="field.name"
+      />
+    </ng-container>
+  </ng-template>
+</div>

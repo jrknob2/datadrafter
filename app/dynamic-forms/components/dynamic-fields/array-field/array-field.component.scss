@@ -1,0 +1,16 @@
+.attribute-repeater {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.attribute-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
+}

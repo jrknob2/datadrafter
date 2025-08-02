@@ -1,0 +1,32 @@
+<!-- Bounding box -->
+<div class="selection-verlay">
+<div *ngIf="selectedShape" [ngStyle]="boxStyle"></div>
+<!-- Handles -->
+<!-- Scale mode: 8 bounding box handles -->
+<div *ngIf="editMode === 'scale' && handles">
+  <div *ngFor="let h of handles; let i = index"
+    [ngStyle]="getHandleStyle(h, i)"
+    [ngClass]="handleClass(i)"
+    [style.cursor]="getScaleCursor(i)">
+  </div>
+</div>
+<!-- Direct mode: polygon vertex handles -->
+<div *ngIf="editMode === 'direct' && isPolygonShape(selectedShape)">
+  <div *ngFor="let pt of selectedShape.points; let i = index"
+      [ngStyle]="getVertexHandleStyle(pt, i)"
+      class="vertex-handle"
+      style="cursor: pointer">
+  </div>
+</div>
+</div>
+
+<!-- Bounding box (dashed border)
+<div *ngIf="selectedShape" [ngStyle]="boxStyle"></div> -->
+<!-- Resize handles (8 total)
+<div *ngIf="canvasRect">
+    <div *ngFor="let h of handles; let i = index"
+     [ngStyle]="getHandleStyle(h, i)"
+     (mouseenter)="onHandleMouseEnter(i)"
+     (mouseleave)="onHandleMouseLeave(i)"
+     (mousedown)="onHandleMouseDown($event, i)">
+</div> -->

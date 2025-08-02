@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  height: 100vh;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app-header {
+  height: 75px;
+  width: 100%;
+  background-color: white;
+  border: 1px;
+  border-radius: 0;
+  color: white;
+  display: flex;
+  //align-items: center;
+  //justify-content: center;
+  font-size: 1.5rem;
+}
+.app-header-row {
+  border: 2px solid black;     // ✅ new border
+  border-radius: 6px;
+  height: 80px; // or whatever height fits
+  padding: 0;   // removes space around
+  margin: 0;
+  flex-shrink: 0;
+}
+.main-row {
+  display: flex;
+  flex: 1;
+  gap: 0;
+  border: 1px;
+  //overflow: hidden;
+}
+
+.left-panel,
+.right-panel {
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  color: white;
+  //background-color: var(--layout-bg);
+}
+
+.left-panel {
+  flex: 1;
+  background-color: #ccc;
+}
+
+.right-panel {
+  flex: 3;
+  background-color: #ddd;
+}
+.left-panel.column-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden; // prevent layout bleed
+}
+
+.fixed-top {
+  flex-shrink: 0;
+  padding: 0.5rem;
+}
+
+.context-scroll.scrollable {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.context-switcher {
+  flex: 0 0 auto;
+}
+
+.layout-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}

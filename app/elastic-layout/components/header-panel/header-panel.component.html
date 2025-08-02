@@ -1,0 +1,33 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="header-panel">
+    <div class="header-content"></div>
+    <div class="header-left">
+        <i class="fas fa-bars icon clickable" (click)="toggleMenu()"></i>
+    </div>
+
+    <div class="header-middle">
+        <div>
+            <span class="data">Data</span><span class="drafter">Drafter</span>
+        </div>
+        <div class="tagline">Let your data show you a thing or two!</div>
+    </div>
+
+    <div class="header-right">
+        <div class="icon-wrapper">
+            <i class="fas fa-cog icon clickable" (click)="toggleSettings()"></i>
+            <div class="dropdown settings-dropdown" *ngIf="showSettings">
+                <div>Settings</div>
+                <div>Theme</div>
+                <div>Preferences</div>
+            </div>
+        </div>
+        <div class="icon-wrapper">
+            <div class="profile-icon clickable" (click)="toggleProfile()">T</div>
+            <div class="dropdown profile-dropdown" *ngIf="showProfile">
+                <div>Profile</div>
+                <div>Sign Out</div>
+            </div>
+        </div>
+    </div>
+</div>

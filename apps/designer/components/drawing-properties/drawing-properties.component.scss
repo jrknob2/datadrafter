@@ -1,0 +1,33 @@
+// 
+:host {
+  display: block;
+  padding: var(--panel-padding, 1rem);
+  color: var(--text-color);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color, #ccc);
+  padding-bottom: 0.25rem;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+}
+
+.panel-body {
+  background-color: var(--panel-bg, #f9f9f9);
+  padding: 1rem;
+  border-radius: var(--border-radius, 8px);
+}
+
+.section-title {
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}

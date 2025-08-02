@@ -1,0 +1,7 @@
+<label class="date-field">
+  <span>{{ label }}</span>
+  <input type="date" 
+    [checked]="value" 
+    (change)="handleChange($any($event.target).value)"
+    (blur)="onTouched()" />
+</label>

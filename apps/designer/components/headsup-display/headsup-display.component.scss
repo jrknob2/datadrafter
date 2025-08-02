@@ -1,0 +1,270 @@
+:host {
+      background-color: transparent;
+  border: 2px solid green;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  inset: 0; // shorthand for top/left/right/bottom: 0
+  pointer-events: none;
+  background-color: transparent;
+
+  // position: fixed;
+    // inset: 0;
+    // pointer-events: none;
+    z-index: 1000;
+    //--hud-color: hsl(0, 0%, 0%);
+}
+
+.zone {
+    color: var(--hud-color);
+    border-color: var(--hud-color);
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    border-radius: 25px;
+    opacity: 0;
+    pointer-events: auto;
+    z-index: 1001;
+    transition: opacity 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    &.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.active {
+        border: 1px solid var(--hud-color); // always visible on the active zone
+    }
+
+    &.dragging {
+        background-color: rgba(0, 0, 0, 0.05); // fill all zones while dragging
+    }
+
+    &.hover {
+        border: 1px solid var(--hud-color); // adds border to hovered zone while dragging
+    }
+
+    &.top,
+    &.bottom {
+        width: 280px;
+        height: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+    }
+
+    &.top {
+        top: 12px;
+    }
+
+    &.bottom {
+        bottom: 12px;
+    }
+
+    &.left,
+    &.right {
+        width: 50px;
+        height: 280px;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+    }
+
+    &.left {
+        left: 12px;
+    }
+
+    &.right {
+        right: 12px;
+    }
+
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: var(--hud-color);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+
+.zone.top {
+    top: var(--hud-top);
+    left: var(--hud-center-x);
+    transform: translateX(-50%);
+}
+
+.zone.bottom {
+    top: var(--hud-bottom + 40px);
+    left: var(--hud-center-x);
+    transform: translateX(-50%);
+}
+
+.zone.left {
+    left: var(--hud-left);
+    top: var(--hud-center-y);
+    transform: translateY(-50%);
+}
+
+.zone.right {
+    right: var(--hud-right);
+    top: var(--hud-center-y);
+    transform: translateY(-50%);
+}
+
+.zone-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    // Arrange vertically for left/right zones
+    .left &,
+    .right & {
+        flex-direction: column;
+    }
+
+    // Arrange horizontally for top/bottom zones
+    .top &,
+    .bottom & {
+        flex-direction: row;
+    }
+}
+
+.brightness-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+
+    i {
+        pointer-events: none;
+    }
+}
+
+.brightness-slider {
+    position: absolute;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    z-index: 11;
+    pointer-events: auto;
+    z-index: 1001;
+
+    input[type='range'] {
+        width: 120px;
+    }
+
+    &.top {
+        top: calc(100% + 6px); // below top zone
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.bottom {
+        bottom: calc(100% + 6px); // above bottom zone
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.left {
+        left: calc(100% + 6px); // to right of left zone
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &.right {
+        right: calc(100% + 6px); // to left of right zone
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.brightness-slider input[type='range'] {
+    accent-color: var(--hud-color);
+}
+
+.brightness-slider input[type='range']::-webkit-slider-thumb {
+    background: var(--hud-color);
+}
+
+.brightness-slider input[type='range']::-moz-range-thumb {
+    background: var(--hud-color);
+}
+
+.command-dropdown {
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px;
+    border-radius: 6px;
+    pointer-events: auto;
+    z-index: 1001;
+
+    &.top,
+    &.bottom {
+        flex-direction: row;
+    }
+
+    &.left,
+    &.right {
+        flex-direction: column;
+    }
+}
+
+.command-dropdown {
+    position: absolute;
+
+    &.top {
+        top: calc(100% + 6px); // below top zone
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.bottom {
+        bottom: calc(100% + 6px); // above bottom zone
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.left {
+        left: calc(100% + 6px); // right of left zone
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &.right {
+        right: calc(100% + 6px); // left of right zone
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.brightness-slider,
+.command-dropdown {
+    background: transparent; // previously: rgba(0,0,0,0.6)
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+}

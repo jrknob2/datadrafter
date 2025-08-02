@@ -1,0 +1,22 @@
+.toolbar {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-around;
+}
+
+.context-button {
+ text-decoration: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  background-color: #e5e5e5;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.context-button:hover {
+  background-color: #666;
+}

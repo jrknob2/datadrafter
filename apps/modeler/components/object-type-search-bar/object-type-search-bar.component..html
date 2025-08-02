@@ -1,0 +1,12 @@
+<!-- apps/modeler/components/object-type-search-bar/object-type-search-bar.component.html -->
+<div class="search-bar">
+  <input
+    type="text"
+    [formControl]="search"
+    class="search-input"
+    placeholder="Find stuff..."
+  />
+  <button *ngIf="search.value" class="clear-btn" (click)="search.setValue('')" aria-label="Clear">
+    &times;
+  </button>
+</div>

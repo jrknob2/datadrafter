@@ -1,0 +1,15 @@
+<label class="number-field">
+  <span>{{ label }}</span>
+  <div class="input-wrapper">
+    <span *ngIf="prefix" class="prefix">{{ prefix }}</span>
+    <input
+      type="number"
+      [step]="step"
+      [readonly]="readonly"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="onInput($event)"
+      (blur)="onTouched()"
+    />
+  </div>
+</label>

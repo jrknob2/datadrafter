@@ -1,0 +1,25 @@
+{
+  "nxConsole.generateAiAgentRules": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["schemas/*-header.schema.json"],
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "type": { "type": "string" },
+            "required": { "type": "boolean" },
+            "readonly": { "type": "boolean" },
+            "enum": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["name", "type"]
+        }
+      }
+    }
+  ]
+}

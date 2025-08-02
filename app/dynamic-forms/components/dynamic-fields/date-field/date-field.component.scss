@@ -1,0 +1,10 @@
+.date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+input[type='date'] {
+  padding: 4px;
+  font-size: 1rem;
+}

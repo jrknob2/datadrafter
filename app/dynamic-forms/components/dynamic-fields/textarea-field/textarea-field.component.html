@@ -1,0 +1,10 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<label class="field-label">{{ label }}</label>
+  <textarea
+    class="form-control"
+    [rows]="rows"
+    [readonly]="readonly"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+  ></textarea>

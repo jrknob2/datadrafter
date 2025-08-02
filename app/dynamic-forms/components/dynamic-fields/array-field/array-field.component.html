@@ -1,0 +1,16 @@
+<div class="array-field">
+  <div class="header">
+    <h4>{{ label }}</h4>
+    <button type="button" (click)="addItem()">+</button>
+  </div>
+
+  <div *ngFor="let item of safeItems; let i = index" class="array-row">
+    <ng-container *ngFor="let field of fields">
+      <dd-text-field *ngIf="field.type === 'text'" [label]="field.label" [ngModel]="item[field.key]"
+        (ngModelChange)="updateItem(i, field.key, $event)" />
+      <dd-checkbox-field *ngIf="field.type === 'checkbox'" [label]="field.label" [ngModel]="item[field.key]"
+        (ngModelChange)="updateItem(i, field.key, $event)" />
+    </ng-container>
+    <button type="button" (click)="removeItem(i)">✕</button>
+  </div>
+</div>

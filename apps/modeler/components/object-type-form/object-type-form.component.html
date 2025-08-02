@@ -1,0 +1,9 @@
+<p><strong>Mode:</strong> {{ mode }}</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isFormReady()">
+  <label>Name:
+    <input formControlName="name" />
+  </label>
+
+  <button type="submit">Submit</button>
+</form>

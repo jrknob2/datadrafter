@@ -1,0 +1,27 @@
+<p>Drawing: {{ state.drawing()?.name }}</p>
+<p>Mouse: {{ state.mouseTracker()?.x }}, {{ state.mouseTracker()?.y }}</p>
+<div class="panel-header">
+  <h2>Drawing Properties</h2>
+  <!-- <span class="panel-title">Drawing Properties</span> -->
+  <dd-mouse-tracker [coords]="state.mouseTracker()"></dd-mouse-tracker>
+</div>
+
+<div class="panel-body">
+  <h3 class="section-title">Drawing Settings</h3>
+  <p>This panel shows general drawing settings.</p>
+</div>
+
+<!-- <div class="toolbar-row">
+    <dd-canvas-toolbar></dd-canvas-toolbar>
+  </div>
+<div class="drawing-properties-container">
+  <div class="header-row">
+    <span class="header-title">Drawing Properties</span>
+    <dd-mouse-tracker [coords]="mouseTracker"></dd-mouse-tracker>
+  </div>
+
+  <div class="content-panel">
+    <h3>Drawing Settings</h3>
+    <p>This panel shows general drawing settings.</p>
+  </div>
+</div> -->

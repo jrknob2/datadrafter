@@ -4,7 +4,16 @@
     "outDir": "./dist/out-tsc",
     "types": []
   },
-  "include": ["src/**/*.ts"],
+  //"include": ["src/**/*.ts"],
+  "include": [
+    "src/main.ts",
+    "src/app/elastic-layout/**/*",
+    "src/app/sharedservices/**/*",
+    "src/app/components/drawing-properties/**/*",
+    "src/app/components/designer-dashboard/**/*",
+    "src/app/components/object-types-list/**/*",
+    "src/app/components/object-type-dashboard/**/*"
+  ],
   "exclude": [
     "jest.config.ts",
     "src/test-setup.ts",

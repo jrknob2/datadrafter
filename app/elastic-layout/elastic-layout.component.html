@@ -1,0 +1,22 @@
+<!-- elastic-layout.component.html -->
+<div class="app-container">
+  <div class="app-header-row">
+    <dd-header-panel></dd-header-panel>
+  </div>
+  <div class="main-row">
+    <div class="left-panel">
+      <!-- <div class="context-switcher"> -->
+        <dd-context-toolbar></dd-context-toolbar>
+      <!-- </div> -->
+      <div class="layout-scroll">
+        <ng-container #dynamicContext></ng-container>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="layout-scroll workspace">
+        <ng-container #dynamicWorkspace></ng-container>
+        <div class="workspace-overlay"></div>
+      </div>
+    </div>
+  </div>
+</div>

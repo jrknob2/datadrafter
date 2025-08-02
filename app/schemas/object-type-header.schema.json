@@ -1,0 +1,8 @@
+[
+  { "name": "uuid", "label": "UUID", "type": "text", "required": true, "readonly": true },
+  { "name": "name", "label": "Name", "type": "text", "required": true },
+  { "name": "description", "label": "Description", "type": "textarea", "required": true },
+  { "name": "version", "label": "Version", "type": "number", "required": true },
+  { "name": "inheritsFrom", "label": "Inherits From", "type": "text", "required": true },
+  { "name": "svg", "label": "SVG", "type": "text", "required": true }
+]

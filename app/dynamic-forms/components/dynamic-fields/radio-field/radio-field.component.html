@@ -1,0 +1,8 @@
+<div class="radio-field">
+  <span class="group-label">{{ label }}</span>
+  <label *ngFor="let opt of options" class="radio-option">
+    <input type="radio" [name]="name" [value]="opt.value" [checked]="value === opt.value" (change)="onChange(opt.value)"
+      (blur)="onTouched()" />
+    <span>{{ opt.label }}</span>
+  </label>
+</div>

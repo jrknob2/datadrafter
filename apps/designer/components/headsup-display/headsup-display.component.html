@@ -1,0 +1,64 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- ICON TEMPLATE -->
+
+<ng-template #iconTemplate let-cmd="cmd">
+    <ng-container [ngSwitch]="cmd === 'select' ? 'select' : cmd.replace('draw-', '')">
+        <ng-container *ngSwitchCase="'select'">
+            <i class="fa-solid fa-paintbrush"></i>
+        </ng-container>
+        <svg *ngSwitchCase="'rect'" width="20" height="20" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.5" fill="none" />
+        </svg>
+        <svg *ngSwitchCase="'circle'" width="20" height="20" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5" fill="none" />
+        </svg>
+        <svg *ngSwitchCase="'ellipse'" width="20" height="20" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="12" rx="8" ry="5" stroke="currentColor" stroke-width="1.5" fill="none" />
+        </svg>
+        <svg *ngSwitchCase="'polygon'" width="20" height="20" viewBox="0 0 24 24">
+            <path d="M6 4 L18 4 L20 12 L12 20 L4 12 Z" stroke="currentColor" stroke-width="1.5" fill="none" />
+        </svg>
+    </ng-container>
+</ng-template>
+
+<!-- BUTTON TEMPLATE -->
+<ng-template #buttonTemplate>
+    <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" title="Adjust Brightness" (click)="toggleBrightnessSlider()">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div class="brightness-slider" *ngIf="showBrightnessSlider" brightness-slider [ngClass]="activeZone">
+            <input type="range" min="0" max="100" [value]="brightness" (input)="onBrightnessChange($event)" />
+        </div>
+    </button>
+    <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" title="New"><i class="fa-regular fa-file"></i></button>
+    <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" title="Open"><i class="fa-regular fa-folder-open"></i></button>
+    <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" title="Delete"><i class="fa-solid fa-trash"></i></button>
+
+    <!-- DROPDOWN TOGGLE BUTTON -->
+    <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" title="Select Tool" (click)="toggleDropdown()">
+        <ng-container *ngTemplateOutlet="iconTemplate; context: { cmd: command || 'select' }"></ng-container>
+    </button>
+</ng-template>
+
+<!-- ZONE RENDERING -->
+<div class="headsup-display" [ngStyle]="offsetStyles" [style.--hud-color]="brightnessColor">
+    <div *ngFor="let zone of zoneList" [class]="
+         'zone ' + zone +
+         (visibleZones[zone] || isDragging ? ' visible' : '') +
+         (visibleZones[zone] ? ' active' : '') +
+         (isDragging ? ' dragging' : '') +
+         (hoveredZone === zone ? ' hover' : '')" (mousedown)="startDrag(zone, $event)" (mouseenter)="onZoneEnter(zone)"
+        (mouseleave)="onZoneLeave(zone)">
+
+        <div class="zone-buttons" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" *ngIf="visibleZones[zone]">
+            <ng-container *ngTemplateOutlet="buttonTemplate"></ng-container>
+        </div>
+
+        <!-- FLOATING COMMAND DROPDOWN -->
+        <div class="command-dropdown" *ngIf="dropdownOpen" [ngClass]="activeZone">
+            <button class="icon-btn" (mousedown)="$event.stopPropagation()" (click)="$event.stopPropagation()" *ngFor="let cmd of commandList" (click)="setCommand(cmd)" [title]="cmd">
+                <ng-container *ngTemplateOutlet="iconTemplate; context: { cmd: cmd }"></ng-container>
+            </button>
+        </div>
+    </div>
+</div>

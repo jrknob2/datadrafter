@@ -26,11 +26,13 @@ export default [
   {
     files: ['**/*.ts'],
     rules: {
+      "@angular-eslint/template/click-events-have-key-events": "off",
+"@angular-eslint/template/interactive-supports-focus": "off",
       '@angular-eslint/directive-selector': [
         'error',
         {
           type: 'attribute',
-          prefix: 'app',
+          prefix: 'dd',
           style: 'camelCase',
         },
       ],
@@ -38,7 +40,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'app',
+          prefix: 'dd',
           style: 'kebab-case',
         },
       ],
