@@ -1,0 +1,141 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<ng-template #errorTemplate let-model="model" let-field="field">
+  <div class="error" *ngIf="model.invalid && (model.dirty || model.touched)">
+    <i class="fas fa-exclamation-circle"></i>
+    <div>
+      <div *ngIf="model.errors?.required">This field is required.</div>
+      <div *ngIf="model.errors?.pattern">{{ field.patternComment }}</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-container [ngSwitch]="field.type">
+  <div *ngSwitchCase="'text'">
+    <label [attr.for]="field.id">{{ field.caption }}</label>
+    <input
+      [id]="field.id"
+      type="text"
+      name="{{ field.id }}"
+      [(ngModel)]="field.value"
+      [readonly]="field.readonly || mode === 'view'"
+      [required]="field.required"
+      [pattern]="field.pattern ?? ''"
+      [ngClass]="getInputClasses(model)"
+      #model="ngModel"
+    />
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { model: model, field: field }"
+    >
+    </ng-container>
+  </div>
+  <div *ngSwitchCase="'textarea'">
+    <label [attr.for]="field.id">{{ field.caption }}</label>
+    <textarea
+      [id]="field.id"
+      class="form-control"
+      [(ngModel)]="field.value"
+      [readonly]="field.readonly || mode === 'view'"
+      [required]="field.required"
+      [rows]="field.lines ?? 4"
+      [ngClass]="getInputClasses(model)"
+      #model="ngModel"
+    ></textarea>
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { model: model, field: field }"
+    >
+    </ng-container>
+  </div>
+
+  <div *ngSwitchCase="'number'">
+    <label [attr.for]="field.id">{{ field.caption }}</label>
+    <input
+      [id]="field.id"
+      type="number"
+      class="form-control"
+      [(ngModel)]="field.value"
+      [readonly]="field.readonly || mode === 'view'"
+      [required]="field.required"
+      [ngClass]="getInputClasses(model)"
+      [min]="field.min ?? null"
+      [max]="field.max ?? null"
+      [step]="field.step ?? 'any'"
+      #model="ngModel"
+    />
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { model: model, field: field }"
+    >
+    </ng-container>
+  </div>
+
+  <div *ngSwitchCase="'select'">
+    <label [attr.for]="field.id">{{ field.caption }}</label>
+    <select
+      [id]="field.id"
+      class="form-control"
+      [disabled]="field.readonly || mode === 'view'"
+      [(ngModel)]="field.value"
+      [ngClass]="getInputClasses(model)"
+      [required]="field.required"
+      #model="ngModel"
+    >
+      <option *ngFor="let opt of field.options" [value]="opt.value">
+        {{ opt.label }}
+      </option>
+    </select>
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { model: model, field: field }"
+    >
+    </ng-container>
+  </div>
+  <div *ngSwitchCase="'checkbox'">
+    <label class="checkbox-field">
+      <input
+        type="checkbox"
+        [id]="field.id"
+        [(ngModel)]="field.value"
+        [ngClass]="getInputClasses(model)"
+        [disabled]="field.readonly || mode === 'view'"
+        (blur)="onTouched?.()"
+        #model="ngModel"
+      />
+      <span>{{ field.caption }}</span>
+    </label>
+  </div>
+  <div *ngSwitchCase="'radio'">
+    <label>{{ field.caption }}</label>
+
+    <!-- One hidden input to get a shared #model -->
+    <input
+      type="radio"
+      [name]="field.id"
+      [(ngModel)]="field.value"
+      hidden
+      #model="ngModel"
+    />
+
+    <div
+      class="radio-group"
+      role="radiogroup"
+      [attr.aria-label]="field.caption"
+    >
+      <label *ngFor="let opt of field.options" class="radio-option">
+        <input
+          type="radio"
+          [name]="field.id"
+          [value]="opt.value"
+          [(ngModel)]="field.value"
+          [disabled]="field.readonly || mode === 'view'"
+          [ngClass]="getInputClasses(model)"
+        />
+        {{ opt.label }}
+      </label>
+    </div>
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { model: model, field: field }"
+    ></ng-container>
+  </div>
+
+  <div *ngSwitchDefault>
+    <p>Unsupported field type: {{ field.type }}</p>
+  </div>
+</ng-container>

@@ -14,7 +14,6 @@ export class ObjectTypesService {
 
   // Get a single object type by UUID
 getOne(uuid: string): Promise<ObjectType> {
-  console.log('[object-types-service::getOne]uuid: ', uuid);
   return firstValueFrom(this.http.get<ObjectType>(`${this.apiUrl}/${uuid}`));
 }
 

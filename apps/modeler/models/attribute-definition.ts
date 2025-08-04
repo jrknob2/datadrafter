@@ -18,23 +18,3 @@ export interface AttributeDefinition {
   minItems?: number;
   maxItems?: number;
 }
-
-export interface ObjectTypeRecord {
-  uuid: string;
-  name: string;
-  description?: string;
-  version: number;
-  inheritsFrom?: string;
-  svg?: string;
-}
-
-export interface ObjectType {
-  uuid: string;
-  name: string;
-  description?: string;
-  version: number;
-  inheritsFrom?: string;
-  svg?: string;
-  staticAttributes: AttributeDefinition[];
-  dynamicAttributes: AttributeDefinition[];
-}

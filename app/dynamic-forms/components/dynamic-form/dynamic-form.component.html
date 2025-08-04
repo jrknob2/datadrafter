@@ -1,35 +1,41 @@
 <div *ngIf="renderModel">
   <!-- Record Header Fields (no label) -->
-  <ng-container *ngFor="let field of renderModel.recordHeaderAttributes">
+  <ng-container *ngFor="let field of renderModel.recordHeaderAttributes; let i = index">
     <ng-container
       *ngTemplateOutlet="
         fieldTemplates;
-        context: { $implicit: field, value: renderModel[field.name] }
+        context: { $implicit: field, index: i }
       "
     ></ng-container>
   </ng-container>
 
-  <!-- Static Attributes -->
-  <h3 class="section-label">Static Attributes</h3>
-  <ng-container *ngFor="let field of renderModel.staticAttributes">
-    <ng-container
-      *ngTemplateOutlet="
-        fieldTemplates;
-        context: { $implicit: field, value: renderModel[field.name] }
-      "
-    ></ng-container>
-  </ng-container>
+<!-- Static Attributes -->
+<h3 class="section-label">Static Attributes</h3>
+<ng-container *ngFor="let field of renderModel.staticAttributes">
+  <ng-container
+    *ngTemplateOutlet="
+      fieldTemplates;
+      context: {
+        $implicit: field,
+        value: renderModel.staticAttributes[field.name]
+      }
+    "
+  ></ng-container>
+</ng-container>
 
-  <!-- Dynamic Attributes -->
-  <h3 class="section-label">Dynamic Attributes</h3>
-  <ng-container *ngFor="let field of renderModel.dynamicAttributes">
-    <ng-container
-      *ngTemplateOutlet="
-        fieldTemplates;
-        context: { $implicit: field, value: renderModel[field.name] }
-      "
-    ></ng-container>
-  </ng-container>
+<!-- Dynamic Attributes -->
+<h3 class="section-label">Dynamic Attributes</h3>
+<ng-container *ngFor="let field of renderModel.dynamicAttributes">
+  <ng-container
+    *ngTemplateOutlet="
+      fieldTemplates;
+      context: {
+        $implicit: field,
+        value: renderModel[field.name]
+      }
+    "
+  ></ng-container>
+</ng-container>
 
   <!-- Field Renderer Template -->
   <ng-template #fieldTemplates let-field let-value="value">

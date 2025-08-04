@@ -57,27 +57,21 @@ export class DynamicFormComponent implements OnInit {
 
             const enrichModelForRendering = (model: any, schema: any[]) => {
                 const clone = structuredClone(model);
-                clone.recordHeaderAttributes = schema.map(attr => ({
-                    ...attr,
-                    value: model[attr.name]
-                }));
+                clone.recordHeaderAttributes = schema; //.map(attr => ({
+                //     ...attr,
+                //     value: model[attr.name]
+                // }));
                 return clone;
             };
 
             if (uuid) {
-                console.log('[dynamic-form]uuid: ', uuid);
                 this.service.getOne(uuid).then(obj => {
                     this.model = obj;
-                    console.log('[dynamic-form]model: ', this.model);
                     if (recordHeaderSchema) {
-                        console.log('[dynamic-form]schema: ', recordHeaderSchema);
                         this.renderModel = enrichModelForRendering(obj, recordHeaderSchema);
-                        console.log('renderModel: ', this.renderModel);
                     }
                 });
-            } else if (this.model && recordHeaderSchema && Array.isArray(recordHeaderSchema)) {
-                this.renderModel = enrichModelForRendering(this.model, recordHeaderSchema);
-            }
+             }
         });
     }
 
@@ -90,5 +84,9 @@ export class DynamicFormComponent implements OnInit {
     onCheckboxChange(event: Event): void {
         const input = event.target as HTMLInputElement;
         this.onChange(input.name, input.checked);
+    }
+
+    objectValues(obj: Record<string, any>) {
+        return Object.values(obj || {});
     }
 }

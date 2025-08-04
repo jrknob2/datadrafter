@@ -16,9 +16,7 @@ export const INPUT_RESOLVERS: Record<string, InputResolver> = {
       if (!uuid) throw new Error('[INPUT_RESOLVERS] Missing "uuid"');
 
       const service = injector.get(ObjectTypesService);
-      console.log('[input-registry]uuid: ', uuid);
       const model = await service.getOne(uuid);
-      console.log('[input-registry]model: ', model);
       if (!model) {
         console.warn(`[INPUT_RESOLVERS] ObjectType not found for uuid: ${uuid}`);
       }
